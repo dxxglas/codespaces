@@ -1,0 +1,43 @@
+{
+  "name": "Full Stack Dev Environment",
+
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "2.40"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    },
+    "ghcr.io/devcontainers/features/terraform:1": {
+      "version": "1.6"
+    },
+    "ghcr.io/devcontainers/features/azure-cli:1": {
+      "version": "2.50"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "ms-azuretools.vscode-docker",
+        "hashicorp.terraform",
+        "ms-azuretools.vscode-azurecli"
+      ]
+    }
+  },
+
+  "postCreateCommand": "bash .devcontainer/postCreate.sh",
+
+  "forwardPorts": [3000, 8080],
+
+  "mounts": [
+    "source=maven-cache,target=/root/.m2,type=volume",
+    "source=pnpm-store,target=/root/.local/share/pnpm/store,type=volume"
+  ]
+}
